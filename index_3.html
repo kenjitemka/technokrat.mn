@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Technokrat Plus LLC — Mongolia's official distributor of Life Fitness, NASM, Schiek's Sports. Est. 2020, Ulaanbaatar.">
+<title>Technokrat Plus LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+:root{
+  --black:#1d1d1f;
+  --gray1:#f5f5f7;
+  --gray2:#e8e8ed;
+  --gray3:#d2d2d7;
+  --gray4:#86868b;
+  --gray5:#6e6e73;
+  --white:#fff;
+  --accent:#0071e3;
+  --font:'Montserrat',sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--black);background:var(--white);overflow-x:hidden}
+
+/* ────────────── NAV ────────────── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  transition:all .4s var(--ease);
+}
+#nav.scrolled{
+  background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(24px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+#nav.on-dark{background:rgba(0,0,0,0)}
+#nav.on-dark.scrolled-dark{
+  background:rgba(0,0,0,.7);
+  backdrop-filter:saturate(180%) blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-brand{font-size:17px;font-weight:800;letter-spacing:-.04em;color:var(--white);text-decoration:none;transition:color .3s}
+#nav.scrolled .nav-brand{color:var(--black)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.01em;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s}
+#nav.scrolled .nav-links a{color:var(--gray5)}
+.nav-links a:hover{color:var(--white)}
+#nav.scrolled .nav-links a:hover{color:var(--black)}
+.lang-pill{display:flex;gap:2px;background:rgba(255,255,255,.12);border-radius:100px;padding:3px}
+#nav.scrolled .lang-pill{background:rgba(0,0,0,.06)}
+.lbtn{padding:4px 12px;border:none;background:transparent;font-size:11px;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.5);cursor:pointer;border-radius:100px;font-family:var(--font);transition:all .2s}
+.lbtn.on{background:rgba(255,255,255,.2);color:#fff}
+#nav.scrolled .lbtn{color:rgba(0,0,0,.35)}
+#nav.scrolled .lbtn.on{background:var(--black);color:#fff}
+
+/* ────────────── HERO ────────────── */
+#hero{
+  height:100vh;min-height:700px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 24px;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85') center/cover no-repeat;
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.7) 100%);
+}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-bottom:20px;
+  opacity:0;animation:up .8s .1s var(--ease) forwards;
+}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4)}
+#hero h1{
+  font-size:clamp(2.8rem,7.5vw,6.5rem);font-weight:800;
+  letter-spacing:-.05em;line-height:1.02;color:#fff;
+  margin-bottom:22px;
+  opacity:0;animation:up .9s .25s var(--ease) forwards;
+}
+#hero h1 em{font-style:normal;color:rgba(255,255,255,.55)}
+.hero-lead{
+  font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;
+  color:rgba(255,255,255,.68);line-height:1.75;max-width:580px;
+  margin:0 auto 36px;
+  opacity:0;animation:up .9s .4s var(--ease) forwards;
+}
+.hero-actions{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:up .9s .55s var(--ease) forwards;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:100px;font-size:14px;font-weight:600;
+  letter-spacing:-.01em;text-decoration:none;transition:all .25s var(--ease);
+  font-family:var(--font);border:none;cursor:pointer;
+}
+.btn-dark{background:rgba(255,255,255,.95);color:var(--black)}
+.btn-dark:hover{background:#fff;transform:scale(1.02)}
+.btn-outline-w{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-outline-w:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+.btn-black{background:var(--black);color:#fff}
+.btn-black:hover{background:#333;transform:scale(1.02)}
+.btn-outline-b{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,.2)}
+.btn-outline-b:hover{border-color:var(--black);background:rgba(0,0,0,.03)}
+.btn-sm{padding:10px 20px;font-size:13px}
+.hero-scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:up .8s .9s var(--ease) forwards;
+}
+.scroll-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);animation:breathe 2s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ────────────── STATS STRIP ────────────── */
+.stats-strip{
+  background:var(--black);padding:48px 32px;
+  display:flex;justify-content:center;
+}
+.stats-inner{
+  max-width:900px;width:100%;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-left:1px solid rgba(255,255,255,.06);
+}
+.stat-box{
+  padding:20px 32px;border-right:1px solid rgba(255,255,255,.06);
+  text-align:center;
+}
+.stat-n{font-size:2.8rem;font-weight:800;letter-spacing:-.06em;color:#fff;line-height:1}
+.stat-l{font-size:11px;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.3);margin-top:6px;text-transform:uppercase}
+
+/* ────────────── SHARED ────────────── */
+.section{padding:110px 24px}
+.w{max-width:1060px;margin:0 auto}
+.w-narrow{max-width:720px;margin:0 auto}
+.tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray5);margin-bottom:16px}
+.h2{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;letter-spacing:-.05em;line-height:1.08;color:var(--black);margin-bottom:18px}
+.h2-white{color:#fff}
+.lead{font-size:1.05rem;font-weight:300;color:var(--gray5);line-height:1.8;max-width:560px}
+.lead-white{color:rgba(255,255,255,.5)}
+.bg-gray{background:var(--gray1)}
+.bg-black{background:var(--black)}
+.divider{height:1px;background:var(--gray2)}
+
+/* reveal */
+.r{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.r.in{opacity:1;transform:translateY(0)}
+.r2{transition-delay:.12s}
+.r3{transition-delay:.22s}
+.r4{transition-delay:.32s}
+
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* ────────────── MARQUEE ────────────── */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--gray2);border-bottom:1px solid var(--gray2);background:var(--white);padding:18px 0}
+.mtrack{display:flex;gap:0;animation:mq 22s linear infinite;width:max-content}
+.mitem{display:flex;align-items:center;gap:10px;padding:0 40px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray4);white-space:nowrap;border-right:1px solid var(--gray2)}
+.mitem svg{width:14px;height:14px;fill:var(--gray3)}
+
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ────────────── WHAT WE DO ────────────── */
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--gray2);margin-top:64px;border:1px solid var(--gray2);border-radius:18px;overflow:hidden}
+.pillar{background:var(--white);padding:40px 36px;transition:background .25s}
+.pillar:hover{background:var(--gray1)}
+.pillar-num{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--gray3);margin-bottom:24px}
+.pillar-icon{width:44px;height:44px;border-radius:12px;background:var(--gray1);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.pillar-icon svg{width:20px;height:20px;stroke:var(--black);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pillar-name{font-size:15px;font-weight:700;letter-spacing:-.03em;color:var(--black);margin-bottom:8px;line-height:1.3}
+.pillar-desc{font-size:13px;font-weight:400;color:var(--gray5);line-height:1.72}
+
+/* ────────────── LIFE FITNESS ────────────── */
+.lf-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:72px;border-radius:20px;overflow:hidden;border:1px solid var(--gray2)}
+.lf-img-side{position:relative;overflow:hidden;min-height:560px}
+.lf-img-side img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.lf-img-side:hover img{transform:scale(1.04)}
+.lf-badge{position:absolute;top:20px;left:20px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border-radius:100px;padding:6px 14px;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.lf-dot{width:6px;height:6px;border-radius:50%;background:#34d399;flex-shrink:0}
+.lf-content-side{padding:56px 52px;background:var(--black);display:flex;flex-direction:column;justify-content:center}
+.lf-content-side .tag{color:rgba(255,255,255,.3)}
+.lf-content-side .h2{font-size:clamp(1.8rem,3vw,2.8rem)}
+.lf-content-side p{font-size:14px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:28px}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.spec{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 18px}
+.spec-l{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:5px}
+.spec-v{font-size:13px;font-weight:500;color:rgba(255,255,255,.75)}
+.lf-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-wghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);padding:11px 22px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.01em;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;font-family:var(--font)}
+.btn-wghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25);color:#fff}
+.verify-link{font-size:12px;color:rgba(255,255,255,.28);text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:color .2s;font-weight:500}
+.verify-link:hover{color:rgba(255,255,255,.65)}
+
+/* ────────────── BRAND CARDS ────────────── */
+.brands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px}
+.bcard{border-radius:20px;overflow:hidden;background:var(--gray1);border:1px solid var(--gray2);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.bcard:hover{transform:translateY(-5px);box-shadow:0 28px 56px rgba(0,0,0,.09)}
+.bcard-img{height:200px;overflow:hidden;position:relative}
+.bcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.bcard:hover .bcard-img img{transform:scale(1.06)}
+.bcard-body{padding:28px 28px 32px}
+.bcard-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray4);border:1px solid var(--gray3);border-radius:100px;padding:4px 12px;margin-bottom:14px}
+.bcard-name{font-size:19px;font-weight:800;letter-spacing:-.04em;color:var(--black);margin-bottom:3px}
+.bcard-sub{font-size:12px;font-weight:400;color:var(--gray4);margin-bottom:12px}
+.bcard-desc{font-size:13px;font-weight:400;color:var(--gray5);line-height:1.7}
+.bcard-link{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:12px;font-weight:700;letter-spacing:.01em;color:var(--accent);text-decoration:none;transition:gap .15s}
+.bcard-link:hover{gap:10px}
+.bcard-link svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ────────────── SERVICES ────────────── */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,.04);margin-top:64px;border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden}
+.svc{padding:40px 40px;border-bottom:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);transition:background .2s}
+.svc:hover{background:rgba(255,255,255,.03)}
+.svc:nth-child(2n){border-right:none}
+.svc:nth-last-child(-n+2){border-bottom:none}
+.svc-n{font-size:11px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.15);margin-bottom:18px}
+.svc-title{font-size:16px;font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:10px;line-height:1.3}
+.svc-text{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75}
+
+/* ────────────── CEO / ABOUT ────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:72px;align-items:start}
+.ceo-block{background:var(--gray1);border-radius:20px;padding:40px;border:1px solid var(--gray2)}
+.ceo-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--gray2)}
+.ceo-av{width:58px;height:58px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;letter-spacing:-.04em;color:#fff;flex-shrink:0}
+.ceo-nm{font-size:16px;font-weight:800;letter-spacing:-.04em;color:var(--black)}
+.ceo-role{font-size:12px;font-weight:400;color:var(--gray4);margin-top:3px}
+.ceo-bio{font-size:13px;font-weight:400;color:var(--gray5);line-height:1.8;margin-bottom:24px}
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-row{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--gray2)}
+.tl-row:first-child{padding-top:0}
+.tl-row:last-child{border-bottom:none;padding-bottom:0}
+.tl-yr{font-size:11px;font-weight:700;color:var(--gray4);min-width:58px;padding-top:2px;letter-spacing:.01em}
+.tl-txt{font-size:13px;font-weight:400;color:var(--gray5);line-height:1.55}
+.about-text h4{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--black);margin-bottom:16px}
+.about-text p{font-size:14px;font-weight:400;color:var(--gray5);line-height:1.85;margin-bottom:16px}
+.site-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.01em;text-decoration:none;border:1px solid var(--gray2);color:var(--gray5);transition:all .2s}
+.chip:hover{border-color:var(--black);color:var(--black);background:var(--gray1)}
+.chip svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ────────────── CONTACT ────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:72px}
+.contact-rows{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;align-items:flex-start;gap:16px;padding:22px 24px;border:1px solid var(--gray2);border-radius:14px;background:var(--white);transition:border-color .2s,box-shadow .2s}
+.crow:hover{border-color:var(--gray4);box-shadow:0 4px 24px rgba(0,0,0,.05)}
+.crow-ic{width:36px;height:36px;border-radius:10px;background:var(--gray1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.crow-ic svg{width:16px;height:16px;stroke:var(--black);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.crow-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray4);margin-bottom:4px}
+.crow-val{font-size:14px;font-weight:500;color:var(--black)}
+.crow-val a{color:var(--accent);text-decoration:none}
+.map-block{border-radius:18px;overflow:hidden;border:1px solid var(--gray2);min-height:380px}
+.map-block iframe{width:100%;height:100%;border:none;min-height:380px;display:block}
+
+/* ────────────── FOOTER ────────────── */
+footer{background:var(--black);padding:56px 32px 40px}
+.ft{max-width:1060px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:1fr auto;gap:40px;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);align-items:start}
+.ft-brand{font-size:20px;font-weight:800;letter-spacing:-.05em;color:#fff}
+.ft-brand span{color:rgba(255,255,255,.3)}
+.ft-tagline{font-size:12px;font-weight:300;color:rgba(255,255,255,.25);margin-top:6px;line-height:1.6}
+.ft-cols{display:flex;gap:56px}
+.ft-col-h{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
+.ft-col a{display:block;font-size:13px;font-weight:400;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.ft-col a:hover{color:rgba(255,255,255,.8)}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.2)}
+
+/* ────────────── RESPONSIVE ────────────── */
+@media(max-width:900px){
+  .pillars{grid-template-columns:1fr 1fr}
+  .lf-wrap{grid-template-columns:1fr}
+  .lf-img-side{min-height:320px}
+  .brands-grid{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .svc:nth-child(2n){border-right:0}
+  .svc:nth-last-child(-n+2){border-bottom:1px solid rgba(255,255,255,.06)}
+  .svc:last-child{border-bottom:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat-box:nth-child(2){border-right:none}
+  .stat-box:nth-child(3){border-top:1px solid rgba(255,255,255,.06)}
+}
+@media(max-width:640px){
+  #nav{padding:0 20px}
+  .nav-links{display:none}
+  .section{padding:72px 20px}
+  .pillars{grid-template-columns:1fr}
+  .brands-grid{grid-template-columns:1fr}
+  .lf-content-side{padding:36px 28px}
+  .stats-inner{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">TECHNO<span>KRAT+</span></a>
+  <ul class="nav-links">
+    <li><a href="#pillars"><span class="en">What We Do</span><span class="mn" style="display:none">Бидний тухай</span></a></li>
+    <li><a href="#lf"><span class="en">Life Fitness</span><span class="mn" style="display:none">Life Fitness</span></a></li>
+    <li><a href="#brands"><span class="en">Brands</span><span class="mn" style="display:none">Брэндүүд</span></a></li>
+    <li><a href="#services"><span class="en">Services</span><span class="mn" style="display:none">Үйлчилгээ</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="mn" style="display:none">Холбоо барих</span></a></li>
+  </ul>
+  <div class="lang-pill">
+    <button class="lbtn on" onclick="setLang('en')">EN</button>
+    <button class="lbtn" onclick="setLang('mn')">МН</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      <span class="en">Est. 2020 · Ulaanbaatar, Mongolia</span>
+      <span class="mn" style="display:none">2020 оноос · Улаанбаатар, Монгол</span>
+    </p>
+    <h1>
+      <span class="en">Mongolia's Gateway<br>to <em>World-Class</em> Brands</span>
+      <span class="mn" style="display:none">Монголын <em>Дэлхийн</em><br>Брэнд рүүх гарц</span>
+    </h1>
+    <p class="hero-lead">
+      <span class="en">Official distributor of Life Fitness, NASM, Schiek's Sports and more — bringing global excellence to Mongolia since 2020.</span>
+      <span class="mn" style="display:none">Life Fitness, NASM, Schiek's Sports болон бусдын Монгол дахь албан ёсны дистрибьютор — 2020 оноос дэлхийн шилдэгийг Монголд.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="#brands" class="btn btn-dark">
+        <span class="en">Explore Our Brands</span><span class="mn" style="display:none">Брэндүүд үзэх</span>
+      </a>
+      <a href="#contact" class="btn btn-outline-w">
+        <span class="en">Get in Touch</span><span class="mn" style="display:none">Холбоо барих</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span class="scroll-label en">Scroll</span><span class="scroll-label mn" style="display:none">Гүйлгэх</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-box">
+      <div class="stat-n">6+</div>
+      <div class="stat-l en">Years Active</div><div class="stat-l mn" style="display:none">Жилийн туршлага</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">6</div>
+      <div class="stat-l en">Global Brand Partners</div><div class="stat-l mn" style="display:none">Дэлхийн брэнд</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">160+</div>
+      <div class="stat-l en">Life Fitness Countries</div><div class="stat-l mn" style="display:none">Life Fitness улс</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">1.9M+</div>
+      <div class="stat-l en">NASM Certified Pros</div><div class="stat-l mn" style="display:none">NASM мэргэжилтэн</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="mtrack" id="mt">
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Life Fitness — Official Mongolia</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> NASM — USA Sports Medicine</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Schiek's Sports Inc. — USA</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Proseed AI Club & Hub</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Baragula AI System</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Mongolian Bodybuilding Federation</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Life Fitness — Official Mongolia</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> NASM — USA Sports Medicine</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Schiek's Sports Inc. — USA</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Proseed AI Club & Hub</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Baragula AI System</div>
+    <div class="mitem"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg> Mongolian Bodybuilding Federation</div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<section class="section" id="pillars">
+  <div class="w">
+    <div class="r">
+      <p class="tag en">What We Do</p><p class="tag mn" style="display:none">Бидний тухай</p>
+      <h2 class="h2"><span class="en">Six pillars.<br>One company.</span><span class="mn" style="display:none">Зургаан чиглэл.<br>Нэг компани.</span></h2>
+    </div>
+    <div class="pillars r r2">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.5 6.5h11M6 17.5h12M4 12h16"/><circle cx="7" cy="12" r="1.5"/><circle cx="17" cy="12" r="1.5"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">Life Fitness Distributor</span><span class="mn" style="display:none">Life Fitness Дистрибьютор</span></div>
+        <div class="pillar-desc"><span class="en">Mongolia's only official partner for the world's #1 commercial fitness equipment brand.</span><span class="mn" style="display:none">Монгол улс дахь дэлхийн #1 арилжааны фитнесс брэндийн цорын ганц дистрибьютор.</span></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">NASM Official Distributor</span><span class="mn" style="display:none">NASM Албан Дистрибьютор</span></div>
+        <div class="pillar-desc"><span class="en">Authorized to offer NASM certifications in Mongolia — the gold standard in sports science from the USA.</span><span class="mn" style="display:none">Монголд NASM сертификат санал болгох эрх бүхий байгууллага.</span></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">Bodybuilding Federation</span><span class="mn" style="display:none">Бодибилдингийн Холбоо</span></div>
+        <div class="pillar-desc"><span class="en">Official board member and national promoter of the Mongolian Body Building Federation.</span><span class="mn" style="display:none">Монголын Бодибилдингийн Холбооны ТУЗ-ийн гишүүн, үндэсний сурталчлагч.</span></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">Proseed AI Club & Hub</span><span class="mn" style="display:none">Proseed AI Клуб & Хаб</span></div>
+        <div class="pillar-desc"><span class="en">Mongolia's leading AI innovation club and co-working hub for next-gen entrepreneurs.</span><span class="mn" style="display:none">Монголын шинэ үеийн AI инноваций клуб, хамтын ажлын орон зай.</span></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">05</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">Baragula AI System</span><span class="mn" style="display:none">Baragula AI Систем</span></div>
+        <div class="pillar-desc"><span class="en">Investing in an AI-based inventory management and smart retail system built for Mongolian businesses.</span><span class="mn" style="display:none">Монголын бизнесүүдэд зориулсан AI-д суурилсан агуулах удирдлага, ухаалаг жижиглэн худалдааны систем.</span></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">06</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+        </div>
+        <div class="pillar-name"><span class="en">Schiek's Sports Apparel</span><span class="mn" style="display:none">Schiek's Спорт Хувцас</span></div>
+        <div class="pillar-desc"><span class="en">Official Mongolian distributor of Schiek's Sport Inc. USA — premium fitness apparel trusted by champions.</span><span class="mn" style="display:none">Schiek's Sport Inc. АНУ-ын Монгол дахь албан дистрибьютор. Чемпионуудын итгэмжилсэн брэнд.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LIFE FITNESS -->
+<section class="section bg-gray" id="lf">
+  <div class="w">
+    <div class="r">
+      <p class="tag en">Featured Brand</p><p class="tag mn" style="display:none">Тэргүүлэх Брэнд</p>
+      <h2 class="h2"><span class="en">Life Fitness —<br>Mongolia's official partner.</span><span class="mn" style="display:none">Life Fitness —<br>Монголын албан түнш.</span></h2>
+    </div>
+  </div>
+  <div class="w r r2" style="margin-top:40px">
+    <div class="lf-wrap">
+      <div class="lf-img-side">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85" alt="Life Fitness commercial gym" loading="lazy">
+        <div class="lf-badge"><span class="lf-dot"></span><span class="en">Verified — lifefitness.com</span><span class="mn" style="display:none">Баталгаажсан — lifefitness.com</span></div>
+      </div>
+      <div class="lf-content-side">
+        <p class="tag"><span class="en">Since 2020 · Ulaanbaatar</span><span class="mn" style="display:none">2020 оноос · Улаанбаатар</span></p>
+        <h2 class="h2 h2-white" style="font-size:clamp(1.7rem,2.8vw,2.5rem)"><span class="en">The world's #1.<br>Now in Mongolia.</span><span class="mn" style="display:none">Дэлхийн #1.<br>Монголд.</span></h2>
+        <p><span class="en">Over 50 years of innovation. From the original Lifecycle® exercise bike to the Symbio™ immersive cardio line — Life Fitness defines global fitness standards. Technokrat Plus is the verified official distributor, listed on lifefitness.com.</span><span class="mn" style="display:none">50 гаруй жилийн инноваци. Анхны Lifecycle® дугуйнаас Symbio™ иммерсив кардио шугам хүртэл. Technokrat Plus нь lifefitness.com дээр жагсаасан Монголын баталгаажсан дистрибьютор.</span></p>
+        <div class="spec-grid">
+          <div class="spec"><div class="spec-l en">Category</div><div class="spec-l mn" style="display:none">Ангилал</div><div class="spec-v en">Cardio · Strength · Group</div><div class="spec-v mn" style="display:none">Кардио · Хүч · Бүлэг</div></div>
+          <div class="spec"><div class="spec-l en">Origin</div><div class="spec-l mn" style="display:none">Гарал</div><div class="spec-v">Rosemont, IL · USA</div></div>
+          <div class="spec"><div class="spec-l en">Global Reach</div><div class="spec-l mn" style="display:none">Дэлхийн хүрээ</div><div class="spec-v">120+ <span class="en">Countries</span><span class="mn" style="display:none">Улс</span></div></div>
+          <div class="spec"><div class="spec-l en">Heritage</div><div class="spec-l mn" style="display:none">Түүх</div><div class="spec-v">50+ <span class="en">Years</span><span class="mn" style="display:none">Жил</span></div></div>
+        </div>
+        <div class="lf-ctas">
+          <a href="https://lifefitness.widen.net/s/lpfj9xd57q/lf-hs_productcatalog_2025_high-res" target="_blank" class="btn-wghost">
+            <svg style="width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="en">2025 Product Catalog</span><span class="mn" style="display:none">2025 Бүтээгдэхүүний каталог</span>
+          </a>
+          <a href="https://www.lifefitness.com/en-us/find-a-distributor" target="_blank" class="verify-link">
+            <span class="en">Verify on lifefitness.com</span><span class="mn" style="display:none">Баталгаажуулах</span>
+            <svg style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BRANDS -->
+<section class="section" id="brands">
+  <div class="w">
+    <div class="r">
+      <p class="tag en">Brand Portfolio</p><p class="tag mn" style="display:none">Брэнд Портфолио</p>
+      <h2 class="h2"><span class="en">Every brand.<br>Officially represented.</span><span class="mn" style="display:none">Бүх брэнд.<br>Албан ёсоор.</span></h2>
+    </div>
+    <div class="brands-grid r r2">
+      <!-- NASM -->
+      <div class="bcard">
+        <div class="bcard-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85" alt="NASM fitness certification" loading="lazy">
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-chip">USA · Education</span>
+          <div class="bcard-name">NASM</div>
+          <div class="bcard-sub">National Academy of Sports Medicine</div>
+          <div class="bcard-desc"><span class="en">The world's most trusted fitness certification since 1987. NCCA-accredited CPT, PES, CES, and nutrition programs — now available in Mongolia through Technokrat Plus.</span><span class="mn" style="display:none">1987 оноос дэлхийн хамгийн итгэмжлэгдсэн фитнесс сертификат. Монголд NASM-р дамжуулан авах боломжтой.</span></div>
+          <a href="https://www.nasm.org" target="_blank" class="bcard-link">
+            nasm.org <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Schiek -->
+      <div class="bcard">
+        <div class="bcard-img">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=85" alt="Schiek sports gear" loading="lazy">
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-chip">USA · Apparel</span>
+          <div class="bcard-name">Schiek's Sports</div>
+          <div class="bcard-sub">Premium Fitness Apparel & Accessories</div>
+          <div class="bcard-desc"><span class="en">Elite American fitness gear — belts, gloves, straps and accessories trusted by champion athletes worldwide. Shop at schiek.mn.</span><span class="mn" style="display:none">АНУ-ын элит фитнесс хэрэгсэл — бүс, бээлий, хязаам. schiek.mn-р захиалах боломжтой.</span></div>
+          <a href="https://www.schiek.mn" target="_blank" class="bcard-link">
+            schiek.mn <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Proseed -->
+      <div class="bcard">
+        <div class="bcard-img">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=85" alt="Proseed AI innovation" loading="lazy">
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-chip">Mongolia · AI & Tech</span>
+          <div class="bcard-name">Proseed AI</div>
+          <div class="bcard-sub">proseed.club</div>
+          <div class="bcard-desc"><span class="en">Mongolia's next-generation AI innovation club and co-working hub — nurturing tech entrepreneurs, developers, and AI-driven business leaders.</span><span class="mn" style="display:none">Монголын шинэ үеийн AI инноваций клуб — технологийн бизнес эрхлэгчид, хөгжүүлэгчдийг дэмждэг.</span></div>
+          <a href="https://www.proseed.club" target="_blank" class="bcard-link">
+            proseed.club <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES (dark) -->
+<section class="section bg-black" id="services">
+  <div class="w">
+    <div class="r">
+      <p class="tag" style="color:rgba(255,255,255,.3)"><span class="en">Our Services</span><span class="mn" style="display:none">Үйлчилгээ</span></p>
+      <h2 class="h2 h2-white"><span class="en">What we offer.</span><span class="mn" style="display:none">Бидний санал болгох.</span></h2>
+      <p class="lead lead-white r r2"><span class="en">Six years of cross-industry expertise — from financial consulting to AI-powered supply chains, connecting Mongolia to global standards.</span><span class="mn" style="display:none">Зургаан жилийн туршлага — санхүүгийн зөвлөгөөнөөс AI-д суурилсан хангамжийн сүлжээ хүртэл.</span></p>
+    </div>
+    <div class="svc-grid r r3">
+      <div class="svc">
+        <div class="svc-n">01</div>
+        <div class="svc-title"><span class="en">Financial & Management Consultancy</span><span class="mn" style="display:none">Санхүү & Удирдлагын Зөвлөх</span></div>
+        <div class="svc-text"><span class="en">PMO expertise, budget analysis, cost control and strategic financial guidance for businesses operating in Mongolia.</span><span class="mn" style="display:none">Монгол дахь бизнесүүдэд PMO мэрэгжил, төсвийн шинжилгээ, зардлын хяналт, стратегийн санхүүгийн зөвлөгөө.</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-n">02</div>
+        <div class="svc-title"><span class="en">Sport & Fitness Management</span><span class="mn" style="display:none">Спорт & Фитнесс Удирдлага</span></div>
+        <div class="svc-text"><span class="en">Full gym setup, facility management consulting, trainer certification programs, and national federation partnerships.</span><span class="mn" style="display:none">Спортын заал байгуулах, удирдлага, дасгалжуулагч сертификат, үндэсний холбооны хамтын ажиллагаа.</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-n">03</div>
+        <div class="svc-title"><span class="en">Premium Brand Distribution</span><span class="mn" style="display:none">Шилдэг Брэнд Дистрибьюц</span></div>
+        <div class="svc-text"><span class="en">Official import and distribution of global brands in Mongolia — with full legal documentation and after-sales support.</span><span class="mn" style="display:none">Олон улсын брэндүүдийг хуулийн дагуу Монголд импортлох, дистрибьюцлах, борлуулалтын дараах дэмжлэг.</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-n">04</div>
+        <div class="svc-title"><span class="en">Next-Gen Business Development</span><span class="mn" style="display:none">Шинэ Үеийн Бизнес Хөгжил</span></div>
+        <div class="svc-text"><span class="en">Advisory for startups and emerging businesses — data analysis, market research and growth strategy in Mongolia's dynamic landscape.</span><span class="mn" style="display:none">Стартап болон шинэ бизнесүүдэд өгөгдлийн шинжилгээ, зах зээлийн судалгаа, өсөлтийн стратеги.</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-n">05</div>
+        <div class="svc-title"><span class="en">International Liaison & Legal Bridging</span><span class="mn" style="display:none">Олон Улсын Хамтын Ажиллагаа</span></div>
+        <div class="svc-text"><span class="en">Facilitating official partnerships between overseas companies and Mongolian authorities — under proper legal agreements and documentation.</span><span class="mn" style="display:none">Гадаад компаниудыг Монгол байгууллагуудтай хуулийн баримт бичгийн дагуу холбох үйлчилгээ.</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-n">06</div>
+        <div class="svc-title"><span class="en">Supply Chain Management</span><span class="mn" style="display:none">Хангамжийн Сүлжээ</span></div>
+        <div class="svc-text"><span class="en">6+ years of proven logistics, procurement and inventory solutions — now enhanced with the Baragula AI system for smarter operations.</span><span class="mn" style="display:none">6 жилийн туршлагатай логистик, нийлүүлэлт — Baragula AI-г ашигласан ухаалаг хангамжийн шийдэл.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="w">
+    <div class="r">
+      <p class="tag en">About</p><p class="tag mn" style="display:none">Манай тухай</p>
+      <h2 class="h2"><span class="en">Built on experience.<br>Driven by vision.</span><span class="mn" style="display:none">Туршлагад тулгуурласан.<br>Алсын харааны чиглэлд.</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="ceo-block r r2">
+        <div class="ceo-top">
+          <div class="ceo-av">TR</div>
+          <div>
+            <div class="ceo-nm">Temuulen Rentsendorj</div>
+            <div class="ceo-role"><span class="en">Founder & CEO, Technokrat Plus LLC</span><span class="mn" style="display:none">Үүсгэн байгуулагч & Гүйцэтгэх захирал</span></div>
+          </div>
+        </div>
+        <p class="ceo-bio"><span class="en">With a BBA in Accounting from the University of Central Oklahoma, PMO expertise from Oyu Tolgoi's $5.8B underground expansion, and a track record building Mongolia's first Gold's Gym — Temuulen brings rare depth across finance, operations and business development.</span><span class="mn" style="display:none">Оклахома Их Сургуулийн нягтлан бодох бүртгэлийн бакалавр, Оюу Толгойн 5.8 тэрбум долларын PMO мэрэгжилтэн, Монголын анхны Gold's Gym байгуулагч.</span></p>
+        <div class="tl">
+          <div class="tl-row"><div class="tl-yr">2020—</div><div class="tl-txt"><span class="en">Founder & CEO, Technokrat Plus LLC</span><span class="mn" style="display:none">Technokrat Plus ХХК — Үүсгэн байгуулагч</span></div></div>
+          <div class="tl-row"><div class="tl-yr">2018–20</div><div class="tl-txt"><span class="en">Financial Analyst, Oyu Tolgoi IS&T (PMO)</span><span class="mn" style="display:none">Оюу Толгой IS&T — Санхүүгийн аналист (PMO)</span></div></div>
+          <div class="tl-row"><div class="tl-yr">2017–18</div><div class="tl-txt"><span class="en">Advisor Cost Control — Oyu Tolgoi Underground $5.8B</span><span class="mn" style="display:none">Оюу Толгой далд уурхай $5.8B — Зардлын хяналтын зөвлөх</span></div></div>
+          <div class="tl-row"><div class="tl-yr">2015–16</div><div class="tl-txt"><span class="en">Project Manager & Accountant, Gold's Gym Mongolia</span><span class="mn" style="display:none">Gold's Gym Монгол — Төслийн менежер & Нягтлан</span></div></div>
+          <div class="tl-row"><div class="tl-yr">2010–13</div><div class="tl-txt">BBA Accounting · University of Central Oklahoma</div></div>
+        </div>
+      </div>
+      <div class="about-text r r3">
+        <h4><span class="en">Technokrat Plus LLC</span><span class="mn" style="display:none">Technokrat Plus ХХК</span></h4>
+        <p><span class="en">Founded in 2020 and headquartered at Sky Plaza, Ulaanbaatar, Technokrat Plus has grown into Mongolia's leading multi-sector distribution and consulting firm in just five years.</span><span class="mn" style="display:none">2020 онд байгуулагдаж, Улаанбаатар хотын Sky Plaza-д байрладаг Technokrat Plus нь таван жилд Монголын тэргүүлэх олон салбарын дистрибьютор болон өссөн.</span></p>
+        <p><span class="en">We represent a curated portfolio of world-class brands — from the world's #1 commercial fitness equipment maker to the USA's leading sports science certification body. Every partnership is verified, official, and legally documented.</span><span class="mn" style="display:none">Дэлхийн #1 арилжааны фитнесс тоног төхөөрөмжийн үйлдвэрлэгчээс АНУ-ын тэргүүлэх спортын шинжлэх ухааны сертификатын байгууллага хүртэл. Бүх хамтын ажиллагаа баталгаажсан, хуулийн дагуу.</span></p>
+        <p><span class="en">Our mission: bridge Mongolia with global excellence — through official channels, trusted relationships, and a commitment to quality that never compromises.</span><span class="mn" style="display:none">Бидний зорилго: Монголыг дэлхийн шилдэгтэй холбох — албан сувгаар, итгэмжлэгдсэн харилцаагаар.</span></p>
+        <div class="site-chips">
+          <a href="https://www.technokrat.mn" target="_blank" class="chip">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            technokrat.mn
+          </a>
+          <a href="https://www.proseed.club" target="_blank" class="chip">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            proseed.club
+          </a>
+          <a href="https://www.schiek.mn" target="_blank" class="chip">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            schiek.mn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="section bg-gray" id="contact">
+  <div class="w">
+    <div class="r">
+      <p class="tag en">Contact</p><p class="tag mn" style="display:none">Холбоо барих</p>
+      <h2 class="h2"><span class="en">Let's connect.</span><span class="mn" style="display:none">Холбогдоё.</span></h2>
+      <p class="lead r r2"><span class="en">Whether you're planning a gym, seeking a certification, or exploring brand partnerships in Mongolia — reach out.</span><span class="mn" style="display:none">Спортын заал байгуулах, сертификат авах, брэнд хамтын ажиллагааны талаар бидэнтэй холбогдоорой.</span></p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-rows r r2">
+        <div class="crow">
+          <div class="crow-ic">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="crow-label en">Address</div><div class="crow-label mn" style="display:none">Хаяг</div>
+            <div class="crow-val"><span class="en">Sukhbaatar District, 1st Khoroo, Sky Plaza (A section), Ulaanbaatar 14250</span><span class="mn" style="display:none">Сүхбаатар дүүрэг, 1-р хороо, Sky Plaza (А хэсэг), Улаанбаатар 14250</span></div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="crow-ic">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.02-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="crow-label en">Phone</div><div class="crow-label mn" style="display:none">Утас</div>
+            <div class="crow-val"><a href="tel:+97689118951">+976 8911 8951</a></div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="crow-ic">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="crow-label">Email</div>
+            <div class="crow-val"><a href="mailto:bdm@technokrat.mn">bdm@technokrat.mn</a></div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="crow-ic">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="crow-label">Website</div>
+            <div class="crow-val"><a href="https://www.technokrat.mn" target="_blank">www.technokrat.mn</a></div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="crow-ic">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="crow-label en">Contact Person</div><div class="crow-label mn" style="display:none">Холбоо барих хүн</div>
+            <div class="crow-val">Temuulen Rentsendorj · CEO</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-block r r3">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d336.8!2d106.9174!3d47.9138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9693fce3f08c71%3A0x6bca2c7c0a80b0e3!2sSky+Plaza!5e0!3m2!1sen!2smn!4v1" allowfullscreen loading="lazy" title="Technokrat Plus LLC location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand">TECHNO<span>KRAT+</span></div>
+        <div class="ft-tagline">
+          <span class="en">Mongolia's Premier Global Brand Distributor · Est. 2020</span>
+          <span class="mn" style="display:none">Монголын тэргүүлэх дэлхийн брэнд дистрибьютор · 2020 оноос</span>
+        </div>
+      </div>
+      <div class="ft-cols">
+        <div class="ft-col">
+          <div class="ft-col-h en">Company</div><div class="ft-col-h mn" style="display:none">Компани</div>
+          <a href="#pillars"><span class="en">What We Do</span><span class="mn" style="display:none">Бидний тухай</span></a>
+          <a href="#brands"><span class="en">Brands</span><span class="mn" style="display:none">Брэндүүд</span></a>
+          <a href="#services"><span class="en">Services</span><span class="mn" style="display:none">Үйлчилгээ</span></a>
+          <a href="#about"><span class="en">About</span><span class="mn" style="display:none">Манай тухай</span></a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-h en">Brands</div><div class="ft-col-h mn" style="display:none">Брэндүүд</div>
+          <a href="https://www.lifefitness.com" target="_blank">Life Fitness</a>
+          <a href="https://www.nasm.org" target="_blank">NASM</a>
+          <a href="https://www.schiek.mn" target="_blank">Schiek's Sports</a>
+          <a href="https://www.proseed.club" target="_blank">Proseed AI</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-h en">Contact</div><div class="ft-col-h mn" style="display:none">Холбоо барих</div>
+          <a href="mailto:bdm@technokrat.mn">bdm@technokrat.mn</a>
+          <a href="tel:+97689118951">+976 8911 8951</a>
+          <a href="https://www.technokrat.mn" target="_blank">technokrat.mn</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">
+        <span class="en">© 2025 Technokrat Plus LLC. All rights reserved.</span>
+        <span class="mn" style="display:none">© 2025 Technokrat Plus ХХК. Бүх эрх хуулиар хамгаалагдсан.</span>
+      </div>
+      <div class="ft-copy en">Official distributor · Life Fitness · NASM · Schiek's Sports · Ulaanbaatar, Mongolia</div>
+      <div class="ft-copy mn" style="display:none">Албан дистрибьютор · Life Fitness · NASM · Schiek's Sports · Улаанбаатар, Монгол</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Language ── */
+let L='en';
+function setLang(l){
+  L=l;
+  document.querySelectorAll('.en,.mn').forEach(el=>{
+    const isEn=el.classList.contains('en');
+    el.style.display=(l==='en'&&isEn)||(l==='mn'&&!isEn)?'':'none';
+  });
+  document.querySelectorAll('.lbtn').forEach((b,i)=>{
+    b.classList.toggle('on',(i===0&&l==='en')||(i===1&&l==='mn'));
+  });
+  /* fix inline vs block */
+  document.querySelectorAll('p.en,p.mn,div.en,div.mn,li.en,li.mn').forEach(el=>{
+    if(el.style.display==='')el.style.display='';
+  });
+  document.querySelectorAll('span.en,span.mn,a.en,a.mn').forEach(el=>{
+    if(el.style.display==='')el.style.display='inline';
+  });
+}
+
+/* ── Nav ── */
+const nav=document.getElementById('nav');
+function updateNav(){
+  const y=window.scrollY;
+  const heroH=document.getElementById('hero').offsetHeight;
+  if(y<heroH-60){
+    nav.classList.remove('scrolled');
+  } else {
+    nav.classList.add('scrolled');
+  }
+}
+updateNav();
+window.addEventListener('scroll',updateNav,{passive:true});
+
+/* ── Scroll reveal ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}
+  });
+},{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+
+/* ── Smooth anchor ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    const t=document.querySelector(id);
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+</script>
+</body>
+</html>
